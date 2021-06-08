@@ -1,0 +1,21 @@
+version: '3'
+services:
+    consul:
+        image: consul:1.9.0
+        ports:
+            - 8300:8300
+            - 8500:8500
+            - 8600:8600
+        command: consul agent -dev -ui -client 0.0.0.0
+
+    consul-config-loader:
+        build: .
+        volumes:
+            - ./config/:/config
+        environment:
+            - CONFIG_MODE=git
+            #- CONFIG_MODE=filesystem
+            - INIT_SLEEP_SECONDS=5
+            - CONSUL_URL=consul
+            - ENABLE_SPRING=true
+            - ENABLE_MICRONAUT=false
