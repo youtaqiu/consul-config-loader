@@ -11,7 +11,7 @@ ADD /load-config.sh /
 ADD /upload-consul-file.sh /
 VOLUME /config
 
-ENV CONFIG_MODE=filesystem
+ENV CONFIG_MODE=git
 ENV INIT_SLEEP_SECONDS=5
 ENV CONSUL_URL=localhost
 ENV CONSUL_PORT=8500
